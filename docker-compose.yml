@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:13
+    container_name: postgres
+    environment:
+      POSTGRES_USER: chatbotiq_user
+      POSTGRES_PASSWORD: chatbotiq_password
+      POSTGRES_DB: chatbotiq
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  fastapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fastapi
+    environment:
+      DATABASE_URL: postgres://chatbotiq_user:chatbotiq_password@postgres:5432/chatbotiq
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:
