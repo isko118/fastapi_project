@@ -24,6 +24,9 @@ services:
       - "8000:8000"
     depends_on:
       - postgres
+    volumes:
+      - fastapi_data:/app
 
 volumes:
   postgres_data:
+  fastapi_data:
