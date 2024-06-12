@@ -27,8 +27,8 @@
 ## Запуск
 
 Для запуска приложения используйте команду:
+docker-compose -f docker-compose.yml up 
 
-uvicorn main:app --reload
 API будет доступен по адресу http://127.0.0.1:8000.
 
 ## Документация
